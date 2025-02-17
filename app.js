@@ -44,7 +44,7 @@ if (mi_carrito.includes(item)) {
     const indice = mi_carrito.indexOf(item);
     mi_carrito.splice(indice, 1);
     console.log("¡Vendiste " + item + "!");
-    mi_dinero = mi_dinero + precio_x_item;
+    mi_dinero = mi_dinero + precio_x_producto;
     mostrar_carrito();
 } else {
     console.error("No tenés nada de '" + item + "' para vender.");
@@ -58,3 +58,10 @@ for (let indice = 0; indice < mi_carrito.length; indice++) {
 }
 console.log("Tu dinero:$", mi_dinero);
 }
+
+function mostrar_shop() {
+    console.log("Los productos disponibles son:");
+    for (let indice = 0; indice < shop.length; indice++) {
+        console.log(shop[indice]);
+    }
+    }

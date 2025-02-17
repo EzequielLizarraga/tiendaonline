@@ -3,13 +3,22 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css">
     <title>Document</title>
 </head>
 <body>
-    <h3>Bienvenido a nuestra tienda!</h3>
-    <button onclick="comprar_prompt()">Comprar</button>
-    <button onclick="vender_prompt()">Vender</button>
-    <button onclick="mostrar_carrito()">Carrito</button>
+    <header>
+    <h3>¡Bienvenido a nuestra tienda!</h3>
+    </header>   
+    <div class="botones">
+    <button class="boton" onclick="comprar_prompt()">Comprar</button>
+    <button class="boton" onclick="vender_prompt()">Vender</button>
+    <button class="boton" onclick="mostrar_carrito()">Carrito</button>
+    </div>
+    <div class="productos">
+        <h4>Productos disponibles</h4>
+    <p>+Servilleta <br>+Papel higienico <br>+Toalla intercalada <br>+Detergente </p>  
+    </div>
     <script src="app.js"></script>
 </body>
 </html>

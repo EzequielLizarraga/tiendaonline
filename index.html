@@ -7,17 +7,42 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
-    <h3>¡Bienvenido a nuestra tienda!</h3>
-    </header>   
+    <header>   
+        <div><a href="./index.html"><img src="./img/logo.jpg" alt="Encabezado de pagina"></a></div>
+        <div>
+        <nav>
+            <ul>
+                <li><a href="">Inicio</a></li>
+                <li><a href="">Cliente</a></li>
+                <li><a href="">Contacto</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>  
     <div class="botones">
     <button class="boton" onclick="comprar_prompt()">Comprar</button>
-    <button class="boton" onclick="vender_prompt()">Vender</button>
+    <button class="boton" onclick="eliminar_prompt()">Eliminar</button>
     <button class="boton" onclick="mostrar_carrito()">Carrito</button>
     </div>
+    <section class="cartasindex">       
+        <div class="carta delantera">
+            <img src="" alt="">
+            <h3>Hector Butler</h3>
+            </div>    
+            <div class="carta delantera">
+                <img src="" alt="">
+                <h3>Hector Butler</h3>
+            </div>
+            <div class="carta delantera">
+                <img src="" alt="">
+                <h3>Hector Butler</h3>
+            </div>      
+    </div>
+</section>    
+    </main>
     <div class="productos">
         <h4>Productos disponibles</h4>
-    <p>+Servilleta <br>+Papel higienico <br>+Toalla intercalada <br>+Detergente </p>  
+        <p>+Servilleta <br>+Papel higienico <br>+Toalla intercalada <br>+Detergente </p>  
     </div>
     <script src="app.js"></script>
 </body>

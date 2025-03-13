@@ -10,10 +10,40 @@ body {
 }
 
 header{
+    background-color:  #f8f8f8;
+    height: 80px;
+    padding: 10px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    background-color: azure;
+    div{
+        a{
+            width: 10px;
+            height: 10px;
+        }
+        img{
+            height: 60px;         
+        }
+    }
+    div{
+    nav{
+        ul{
+            display: flex;
+            list-style: none;
+            li{
+                margin: 10px;
+                a{
+                    text-decoration: none;
+                    color: #030027;
+                    &:hover{
+                        color: #C16E70 
+                    }
+                }
+            }
+        }
+    }
+
+}
 }
 
 
@@ -44,3 +74,23 @@ h3{
     align-items: center;
     margin: 120px;
 }
+
+.cartasindex {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cartadelantera{
+    border: 1px solid black;
+}
+
+.cartasindex img {
+    width: 30%;
+    height: 30%;
+    object-fit: contain;
+    padding: 4px;
+}
+
+

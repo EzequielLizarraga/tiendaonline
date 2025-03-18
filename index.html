@@ -4,46 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css">
-    <title>Document</title>
+    <title>Ezepel</title>
 </head>
 <body>
-    <header>   
-        <div><a href="./index.html"><img src="./img/logo.jpg" alt="Encabezado de pagina"></a></div>
+    <header id="header">
         <div>
-        <nav>
-            <ul>
-                <li><a href="">Inicio</a></li>
-                <li><a href="">Cliente</a></li>
-                <li><a href="">Contacto</a></li>
-            </ul>
-        </nav>
+        <h1 class="titulo">Ezepel</h1>
         </div>
-    </header>  
-    <div class="botones">
-    <button class="boton" onclick="comprar_prompt()">Comprar</button>
-    <button class="boton" onclick="eliminar_prompt()">Eliminar</button>
-    <button class="boton" onclick="mostrar_carrito()">Carrito</button>
-    </div>
-    <section class="cartasindex">       
-        <div class="carta delantera">
-            <img src="" alt="">
-            <h3>Hector Butler</h3>
-            </div>    
-            <div class="carta delantera">
-                <img src="" alt="">
-                <h3>Hector Butler</h3>
-            </div>
-            <div class="carta delantera">
-                <img src="" alt="">
-                <h3>Hector Butler</h3>
-            </div>      
-    </div>
-</section>    
+        <div>
+        <img class="carrito" src="./img/logo.jpg" alt="carrito de compras">
+        </div>
+        <div id="cliente">
+            <ul id="informacion">
+                <li> Nombre : <span class="cliente_nombre">-</span></li>
+                <li> Total : $ <span class="cliente_dinero">0</span></li>
+            </ul>
+        </div>
+    </header>   
+        <div id="vendedor"></div>   
+        <div id="mensaje"> <p><span class="cliente_nombre">-</span> Bienvenido a Ezepel ¿Que articulo estas buscando? <br>Cliquea sobre el item para comprar </p></div>
+        <div class="items" id="items_a_la_venta">
+        </div>
+        <div id="mensaje"> <p><span class="cliente_nombre">-</span> este es tu carrito : <br>Cliquea sobre el item para eliminar </p></div>
+        <div id="carrito">
+        </div>
     </main>
-    <div class="productos">
-        <h4>Productos disponibles</h4>
-        <p>+Servilleta <br>+Papel higienico <br>+Toalla intercalada <br>+Detergente </p>  
-    </div>
     <script src="app.js"></script>
 </body>
 </html>

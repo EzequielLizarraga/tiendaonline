@@ -1,99 +1,95 @@
+let cliente = {
+    nombre: null,
+    carrito: [],
+    dinero: 0,
+};
 
+if (localStorage.getItem("cliente")) {
+  cliente = JSON.parse(localStorage.getItem("cliente"));
+}
+
+while (!cliente.nombre) {
+  cliente.nombre = prompt ("Cual es tu nombre?")
+  guardar_datos();
+} 
+
+function guardar_datos(){
+  localStorage.setItem("cliente", JSON.stringify(cliente));
+}
+
+mostrar_informacion_cliente();
+
+function mostrar_informacion_cliente() {
+const els_cliente_nombre = document.querySelectorAll(".cliente_nombre");
+  els_cliente_nombre.forEach((el) => (el.innerText = cliente.nombre));
+
+const els_cliente_dinero = document.querySelectorAll(".cliente_dinero");
+  els_cliente_dinero.forEach((el) => (el.innerText = cliente.dinero));
+
+const el_carrito = document.querySelector("#carrito");
+  el_carrito.innerHTML = "";
+  cliente.carrito.forEach ((item) => {
+  el_carrito.innerHTML += `<img src="img/${item.imagen}"  data-id="${item.id}" class="item_a_eliminar" title="Nombre : ${item.nombre} - Precio : ${item.precio}"/>`;
+  });
+
+  const els_inventario = document.querySelectorAll(".item_a_eliminar");
+  els_inventario.forEach((el) => {
+    el.addEventListener("click", (event) => {
+      eliminar_item(event.target.getAttribute("data-id"));
+    });
+  });
+}
 
 
 class Item {
-    constructor(nombre, precio, tipo, descripcion) {
+    constructor(id, nombre, precio, imagen) {
+        this.id = id;
         this.nombre = nombre;
         this.precio = precio;
-        this.tipo = tipo;
-        this.descripcion = descripcion;
+        this.imagen = imagen;
     }
 }
 
 const shop = [
-    new Item("Servilleta", 500, "papel", "Una servilleta."),
-    new Item("Papel Higienico", 1000, "papel", "Un papel higienico."),
-    new Item("Toalla intercalada", 800, "papel", "Un seca manos."),
-    new Item("Detergente", 300, "limpieza", "Un detergente limpiador."),
+    new Item(1, "Servilleta", 500, "sussex.png"),
+    new Item(2, "Papel Higienico", 1000, "papelh.png"),
+    new Item(3, "Toalla intercalada", 800, "toalla.png"),
+    new Item(4, "Detergente", 300, "detergente.png"),
 ];
 
+const el_items_a_la_venta = document.querySelector("#items_a_la_venta");
+el_items_a_la_venta.innerHTML = "";
+shop.forEach((item) => {
+  el_items_a_la_venta.innerHTML += `<img src="img/${item.imagen}"  data-id="${item.id}" class="item_a_comprar" title="Nombre : ${item.nombre} - Precio : ${item.precio}"/>`;
+});
 
-let cliente = {
-    carrito: [],
-    dinero: 15000,
-};
+const els_a_la_venta = document.querySelectorAll(".item_a_comprar");
+els_a_la_venta.forEach((el) => {
+  el.addEventListener("click", (event) =>{
+    comprar_item(event.target.getAttribute("data-id"));
+  });
+});
 
-if (localStorage.getItem("cliente")) {
-    cliente = parseInt(localStorage.getItem("cliente"));
+
+function comprar_item(id){
+  const item_a_comprar = shop.find((item) => item.id === Number(id));
+  if (item_a_comprar){
+    cliente.carrito.push(item_a_comprar);
+    cliente.dinero += item_a_comprar.precio;
+    mostrar_informacion_cliente();
+    guardar_datos();
   }
-
-function comprar_prompt() {
-    const item_a_comprar = prompt("¿Qué deseas comprar?");
-    comprar_item(item_a_comprar);
 }
 
-function eliminar_prompt() {
-    const item_a_eliminar = prompt("¿Qué deseas Eliminar?");
-    eliminar_item(item_a_eliminar);
+function eliminar_item(id) {
+  const item_a_eliminar = cliente.carrito.find((item) => item.id === Number(id));
+  if(item_a_eliminar) {
+    const indice = cliente.carrito.findIndex((item) => item.id === Number(id));
+    cliente.carrito.splice(indice, 1);
+    cliente.dinero -= item_a_eliminar.precio;
+    mostrar_informacion_cliente();
+    guardar_datos();
+  }
 }
 
-function comprar_item(prompt) {
-    let item_a_comprar = false;
-    for (item of shop) {
-      if (item.nombre == prompt) {
-        item_a_comprar = item;
-      }
-    }
-  
-    if (item_a_comprar) {
-      if (cliente.dinero >= item_a_comprar.precio) {
-        cliente.dinero = cliente.dinero - item_a_comprar.precio;
-        localStorage.setItem("cliente.dinero", cliente.dinero);
-        cliente.carrito.push(item_a_comprar);
-        localStorage.setItem("cliente.carrito", JSON.stringify(cliente.carrito));
-        console.log("¡Compraste " + item_a_comprar.nombre + "!");
-      } else {
-        console.warn(
-          "No tenés dinero suficiente para comprar " +
-            item_a_comprar.nombre +
-            ". Tu dinero es: " +
-            cliente.dinero +
-            ". Costo del producto: " +
-            item_a_comprar.precio
-        );
-      }
-    } else {
-      console.error("No tengo nada de '" + prompt + "' disponible a la venta.");
-    }
-  }
-
-function eliminar_item(prompt) {
-    let item_a_eliminar = false;
-    for (item of cliente.carrito) {
-      if (item.nombre == prompt) {
-        item_a_eliminar = item;
-      }
-    }
-    if (item_a_eliminar) {
-      const indice = cliente.carrito.indexOf(item_a_eliminar);
-      cliente.carrito.splice(indice, 1);
-      localStorage.setItem("cliente", JSON.stringify(cliente.carrito));
-      console.log("¡Eliminaste " + item_a_eliminar.nombre + "!");
-      cliente.dinero = cliente.dinero + item_a_eliminar.precio;
-      localStorage.setItem("cliente", cliente.dinero);
-      mostrar_carrito();
-    } else {
-      console.error("No tenés ningun item para eliminar.");
-    }
-  }
-  
-  function mostrar_carrito() {
-    console.log("Carrito:");
-    for (item_carrito of cliente.carrito) {
-      console.log("- " + item_carrito.nombre);
-    }
-    console.log("Dinero:", cliente.dinero);
-
-  }
-
-
+const titulo = document.querySelector("h1");

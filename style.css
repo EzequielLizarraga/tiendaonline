@@ -23,16 +23,13 @@ header{
     background-color: black;
 }
 
-.carrito{
+.logo{
     filter: invert(100%);
     width: 45px;
     height: auto;
 
 }
 
-.cards{
-    border: solid 2px black;
-}
 
 div{
     p{
@@ -41,11 +38,27 @@ div{
     }
 }
 
-.items{
-    width: 1200px;
-    height: 600px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+#items_a_la_venta , #carrito {
+
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 20px;
+  margin: 25px;
+  border: 2px solid aliceblue;
+  background-color: black;
+  border-radius: 6px;
+  text-align: center;
 }
 
+.item_a_comprar,
+.item_a_eliminar {
+
+  border: 2px solid aliceblue;
+  border-radius: 10px;
+  padding: 20px;
+  cursor: pointer;
+  width: 200px;
+  height: 200px;
+}
